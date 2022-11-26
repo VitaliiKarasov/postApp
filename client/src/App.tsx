@@ -29,6 +29,7 @@ function App() {
       {/* <h1>{store.isAuth ? `User is authorized ${store.user.email}`: 'You must be authorized'}</h1>
       <h1>{store.user.isActivated ? 'Account confirmed' : 'Confirm your account'}</h1> */}
       <button onClick={() => store.logout()}>Logout</button>
+      {/* <button onClick={() => store.deleteUser}>Delete</button> */}
     </div>
   );
 }

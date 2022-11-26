@@ -80,4 +80,13 @@ export default class Store {
             this.setLoading(false);
         }
     }
+
+    // async deleteUser() {
+    //     try {
+    //         const response = await AuthService.delete();
+    //     } catch (e) {
+    //         console.log(e.response?.data?.message)
+            
+    //     }
+    // }
 }

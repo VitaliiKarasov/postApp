@@ -6,6 +6,7 @@ const tokenService = require('./token-service');
 const UserDto = require('../dtos/user-dto');
 const ApiError = require('../exceptions/api-error');
 const userModel = require('../models/user-model');
+// const { deleteUser } = require('../controllers/user-controller');
 
 
 
@@ -85,6 +86,21 @@ class UserService {
         const users = await UserModel.find();
         return users; 
     }
+     async deleteUserId() {
+        const users = await UserModel.deleteOne();
+        return users;
+     }
+
+    //  async changeUserPass() {
+    // //     // const { id } = req.params;  
+    // //     // const salt = await bcrypt.genSalt(10);
+    // //     // const password = await bcrypt.hash(req.body.password, salt);
+    // //     // const userPassword = await UserModel.findByIdAndUpdate({_id: id} , {password: password}, {new: true} );
+    // //     return userPassword; 
+
+    // const users = await UserModel.findByIdAndUpdate()
+    // return users;
+    //  }
 
 }
 

@@ -14,4 +14,8 @@ export default class AuthService {
     static async logout(): Promise<void> { 
         return $api.post('/logout')
     }
+
+    // static async delete(): Promise<AxiosResponse> {
+    //     return $api.delete('/users/:id')
+    // }
 }
