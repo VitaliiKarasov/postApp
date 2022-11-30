@@ -81,12 +81,14 @@ export default class Store {
         }
     }
 
-    // async deleteUser() {
-    //     try {
-    //         const response = await AuthService.delete();
-    //     } catch (e) {
-    //         console.log(e.response?.data?.message)
+    async deleteUser() {
+        try {
+            const response = await AuthService.delete();
+            this.setAuth(false);
+            this.setUser({} as IUSer);
+        } catch (e) {
+            console.log(e.response?.data?.message)
             
-    //     }
-    // }
+        }
+    }
 }

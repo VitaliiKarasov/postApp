@@ -79,7 +79,6 @@ class UserController {
             const deletedUser = await userService.deleteUserId({_id:req.params.id});
              res.status(200).json(deletedUser);
         } catch (e) {
-            // res.status(400).json({message: error.message});
             next(e)
             
         }
@@ -96,6 +95,8 @@ class UserController {
             next(e)
         }
     }
+
+    
 
 
    
