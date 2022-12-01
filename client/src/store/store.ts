@@ -4,8 +4,10 @@ import AuthService from "../service/AuthService";
 import axios from "axios";
 import { AuthResponse } from "../models/response/AuthResponse";
 import { API_URL } from "../http";
+import ListService from "../service/ListService";
 
 export default class Store {
+   
     // static user: any;
 //   static isAuth: any;
     // static checkAuth() {
@@ -81,14 +83,46 @@ export default class Store {
         }
     }
 
-    async deleteUser() {
+    async deleteUser(id: string) {
         try {
-            const response = await AuthService.delete();
+            const response = await AuthService.delete(id);
             this.setAuth(false);
             this.setUser({} as IUSer);
         } catch (e) {
             console.log(e.response?.data?.message)
             
+        }
+    }
+
+
+
+
+
+    async post(text: string, id: string) {
+        try {
+            const response = await ListService.post(text, id);
+            console.log(response)
+        } catch (e) {
+            console.log(e.response?.data?.message);
+            
+            
+        }
+    }
+
+    async getPosts(id: string) {
+        try {
+            const {data} = await ListService.getPosts(id);            
+            return data
+        } catch (e) {
+            console.log(e.response?.data?.message);
+        }
+    }
+
+    async deletePost(id: string) {
+        try {
+            const {data} = await ListService.deletePost(id);
+        } catch (e) {
+            console.log(e.response?.data?.message); 
         }
     }
 }

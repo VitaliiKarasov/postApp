@@ -16,8 +16,8 @@ router.get('/refresh', userController.refresh);
 router.get('/users', authMiddleware, userController.getUsers);
 router.delete('/users/:id', userController.deleteUser);
 router.put('/users/:id', userController.changePassword);
-router.get('/posts', postController.getPosts);
-router.post('/post', postController.addPost);
+router.get('/posts/:id', postController.getPosts);
+router.post('/post/:id', postController.addPost);
 router.delete('/post/:id', postController.deletePost);
 
 

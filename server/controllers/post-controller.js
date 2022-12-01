@@ -5,7 +5,8 @@ class PostController {
     async addPost (req, res, next) {
         try {
            const { text } = req.body;
-           const post = new postModel({text});
+           const { id } = req.params;
+           const post = new postModel({text, uid:id});
            post
            .save()
            .then((post) => res.status(200).json(post))
@@ -16,8 +17,9 @@ class PostController {
     }
     async getPosts (req, res, next) {
         try {
+            const { id } = req.params;
             postModel
-             .find()
+             .find({uid:id})
              .sort({ createdAt: -1 })
              .then((posts) => res.status(200).json(posts))
             //  .catch((error) => handleError(res, error));
