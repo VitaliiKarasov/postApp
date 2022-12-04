@@ -4,10 +4,17 @@ import { Context } from '.';
 import LoginForm from "./components/LoginForm"
 import ListComponent from './components/ListComponent';
 
+import ChangePass from './components/ChangePass';
+import { Route, Routes, useNavigate } from 'react-router-dom';
+import Home from './pages/home';
+import Login from './pages/login';
+import Register from './pages/register';
+import Navigate from './components/Navigate';
+
 
 function App() {
   const {store} = useContext(Context);
-
+  const navigate = useNavigate()
   useEffect(() => {
     if(localStorage.getItem('token')) {
       store.checkAuth()
@@ -18,20 +25,14 @@ function App() {
     return <div>Loading...</div>
   }
 
-  if (!store.isAuth) {
-    return (
-       <LoginForm/>
-    )
-  }
-
-
   return (
     <div>
-      {/* <h1>{store.isAuth ? `User is authorized ${store.user.email}`: 'You must be authorized'}</h1>
-      <h1>{store.user.isActivated ? 'Account confirmed' : 'Confirm your account'}</h1> */}
-      <button onClick={() => store.logout()}>Logout</button>
-      <button onClick={() => store.deleteUser(store.user.id)}>Delete</button>
-      <ListComponent/>
+      <Navigate/>
+      <Routes>
+        <Route path='/' element={<Home /> } />
+        <Route path='/login' element={<Login /> } />
+        <Route path='/register' element={<Register /> } />
+      </Routes>
     </div>
   );
 }

@@ -92,16 +92,13 @@ class UserService {
         return users;
      }
 
-    //  async changeUserPass() {
-    // //     // const { id } = req.params;  
-    // //     // const salt = await bcrypt.genSalt(10);
-    // //     // const password = await bcrypt.hash(req.body.password, salt);
-    // //     // const userPassword = await UserModel.findByIdAndUpdate({_id: id} , {password: password}, {new: true} );
-    // //     return userPassword; 
-
-    // const users = await UserModel.findByIdAndUpdate()
-    // return users;
-    //  }
+     async changeUserPass() {
+        const { id } = req.params;  
+        const salt = await bcrypt.genSalt(10);
+        const password = await bcrypt.hash(req.body.password, salt);
+        const userPassword = await UserModel.findByIdAndUpdate({_id: id} , {password: password}, {new: true} );
+        return userPassword; 
+     }
 
 }
 

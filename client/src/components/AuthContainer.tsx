@@ -1,13 +1,18 @@
 import { observer } from 'mobx-react-lite';
 import React, {FC, useContext, useState} from 'react';
 import { Context } from '..';
+// import RegistrationForm from './RegistrationForm';
 
+interface PropsI {
+    onSubmit: (email: string, password: string) => void,
+    pageName: string
+}
 
-const LoginForm: FC = () => { 
+const LoginForm: FC<PropsI> = ({onSubmit, pageName}:PropsI) => { 
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
     const {store} = useContext(Context);
-
+    
 
     return (
         <div>
@@ -24,10 +29,10 @@ const LoginForm: FC = () => {
             type="password"
             placeholder="Password"
             />
-            <button onClick={() => store.registration(email, password)}>
-                Registration
+            <button onClick={() => onSubmit(email, password)}>
+                {pageName}
                 </button>
-                
+
         </div>
     )
 }

@@ -125,4 +125,13 @@ export default class Store {
             console.log(e.response?.data?.message); 
         }
     }
+    async changePassword(id: string, password: string) {
+        try {
+            const {data} = await AuthService.changePass(id, password)
+        } catch (e) {
+            console.log(e.response?.data?.message);
+            
+        }
+    
+}
 }
