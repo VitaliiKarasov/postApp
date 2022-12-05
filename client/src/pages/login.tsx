@@ -2,8 +2,7 @@ import { observer } from "mobx-react-lite"
 import { FC, useContext } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { Context } from "..";
-import AuthContainer from "../components/AuthContainer";
-
+import AuthContainer from "../components/AuthContainer/AuthContainer";
 
 const Login: FC = () => { 
     const {store} = useContext(Context);

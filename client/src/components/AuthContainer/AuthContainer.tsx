@@ -1,7 +1,8 @@
 import { observer } from 'mobx-react-lite';
 import React, {FC, useContext, useState} from 'react';
-import { Context } from '..';
-// import RegistrationForm from './RegistrationForm';
+import { Link, useLocation } from 'react-router-dom';
+import { Context } from '../..';
+import s from './AuthContainer.module.css';
 
 interface PropsI {
     onSubmit: (email: string, password: string) => void,
@@ -12,10 +13,14 @@ const LoginForm: FC<PropsI> = ({onSubmit, pageName}:PropsI) => {
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
     const {store} = useContext(Context);
+    const location = useLocation()
+
     
 
     return (
-        <div>
+        <>
+        <div className={s.loginForm}>
+            <div className={s.content}>
             <input 
             onChange={e => setEmail(e.target.value)}
             value={email}
@@ -29,11 +34,28 @@ const LoginForm: FC<PropsI> = ({onSubmit, pageName}:PropsI) => {
             type="password"
             placeholder="Password"
             />
-            <button onClick={() => onSubmit(email, password)}>
+            <button className={s.authButtons} onClick={() => onSubmit(email, password)}>
                 {pageName}
                 </button>
+                {!store.isAuth ? <div className={s.linkContainer}>
+                    {location.pathname === '/login' ? <Link to='/register'>
+                       Don't have an account?
+                    </Link>
+                        : null}
+                    {location.pathname === '/register' ? <Link to='/login'>
+                        Already have an account?
+                    </Link>
+                        : null}
+                </div>
+            : null
+        }
 
+            </div>
+
+
+    
         </div>
+        </>
     )
 }
 export default observer(LoginForm);
